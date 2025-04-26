@@ -4,7 +4,6 @@ import { UserInfo } from '../UserInfo';
 import { CommentList } from '../CommentList';
 import { User } from '../../types/User';
 import { Comment } from '../../types/Comment';
-import comments from '../../api/comments';
 import './PostInfo.scss';
 
 type Props = {
@@ -13,7 +12,7 @@ type Props = {
   comments: Comment[];
 };
 
-export const PostInfo: React.FC<Props> = ({ post, users }) => {
+export const PostInfo: React.FC<Props> = ({ post, users, comments }) => {
   const user = users.find(postUser => postUser.id === post.userId);
   const postComments = comments.filter(comment => comment.postId === post.id);
 
@@ -32,7 +31,7 @@ export const PostInfo: React.FC<Props> = ({ post, users }) => {
           )}
         </p>
       </div>
-      <p className="PostInfo__body">{post.body};</p>
+      <p className="PostInfo__body">{post.body}</p>
       <hr />
       <CommentList comments={postComments} />
     </div>
